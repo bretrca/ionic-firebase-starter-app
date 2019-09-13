@@ -5,12 +5,13 @@
 export const environment = {
   production: false,
   firebase : {
-    apiKey: "YOUR_CREDENTIALS_HERE",
-    authDomain: "YOUR_CREDENTIALS_HERE",
-    databaseURL: "YOUR_CREDENTIALS_HERE",
-    projectId: "YOUR_CREDENTIALS_HERE",
-    storageBucket: "YOUR_CREDENTIALS_HERE",
-    messagingSenderId: "YOUR_CREDENTIALS_HERE"
+    apiKey: "AIzaSyAO41qOz7nplk8x0aHjLeRK7m6pvr3RZ4k",
+    authDomain: "ionic-filebase-starter-app.firebaseapp.com",
+    databaseURL: "https://ionic-filebase-starter-app.firebaseio.com",
+    projectId: "ionic-filebase-starter-app",
+    storageBucket: "",
+    messagingSenderId: "746193529524",
+    appId: "1:746193529524:web:69c68a56699622e263c5e1"
   }
 };
 
