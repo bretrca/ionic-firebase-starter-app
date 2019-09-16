@@ -9,22 +9,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="items" class="list-mini-content" padding>
-  <div *ngIf="items.length > 0" class="list-mini">
+<ion-content *ngIf="products" class="list-mini-content" padding>
+  <div *ngIf="products.length > 0" class="list-mini">
     <ion-col size="6">
       <ion-list>
-        <ion-item *ngFor="let item of items" [routerLink]="['/details', item.payload.doc.id]">
+        <ion-product *ngFor="let product of products" [routerLink]="['/details', product.payload.doc.id]">
 
           <ion-thumbnail slot="start">
-            <img [src]="item.payload.doc.data().image">
+            <img [src]="product.payload.doc.data().image">
           </ion-thumbnail>
-          <ion-label>{{item.payload.doc.data().title}}</ion-label>
+          <ion-label>{{product.payload.doc.data().title}}</ion-label>
           <ion-button fill="clear" slot="end">Details</ion-button>
-        </ion-item>
+        </ion-product>
       </ion-list>
   
   </div>
-  <div *ngIf="items.length == 0" class="empty-list">
+  <div *ngIf="products.length == 0" class="empty-list">
     Please create your first task.
   </div>
 </ion-content>
@@ -39,21 +39,21 @@
       <ion-title>Tasks List</ion-title>
     </ion-toolbar>
   </ion-header>
-<ion-content *ngIf="items" class="list-mini-content" padding>
+<ion-content *ngIf="products" class="list-mini-content" padding>
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let item of items" [routerLink]="['/details', item.payload.doc.id]">
-        <div *ngIf="items.length > 0" class="list-mini">
+      <ion-col size="6" *ngFor="let product of products" [routerLink]="['/details', product.payload.doc.id]">
+        <div *ngIf="products.length > 0" class="list-mini">
           <ion-card>
-            <img [src]="item.payload.doc.data().image">
+            <img [src]="product.payload.doc.data().image">
 
             <ion-card-header>
-              <ion-card-title color="primary">{{item.payload.doc.data().title}}</ion-card-title>
+              <ion-card-title color="primary">{{product.payload.doc.data().title}}</ion-card-title>
             </ion-card-header>
 
             <ion-card-content>
-              {{item.payload.doc.data().description}}
+              {{product.payload.doc.data().description}}
             </ion-card-content>
           </ion-card>
         </div>
@@ -62,7 +62,7 @@
   </ion-grid>
 
 
-  <div *ngIf="items.length == 0" class="empty-list">
+  <div *ngIf="products.length == 0" class="empty-list">
     Please create your first task.
   </div>
 </ion-content>
