@@ -6,6 +6,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -17,6 +18,9 @@ export class DetailsPage implements OnInit {
   image: any;
   item: any;
   load: boolean = false;
+  category: string;
+  publishedDate: Date;
+  price:number;
 
   constructor(
     private imagePicker: ImagePicker,
@@ -35,24 +39,38 @@ export class DetailsPage implements OnInit {
   }
 
   getData(){
+  
+
     this.route.data.subscribe(routeData => {
      let data = routeData['data'];
      if (data) {
        this.item = data;
        this.image = this.item.image;
+       this.category= this.item.category;
+       this.publishedDate= this.item.publishedDate;
+       this.price = this.item.price;
+  
      }
     })
     this.validations_form = this.formBuilder.group({
       title: new FormControl(this.item.title, Validators.required),
-      description: new FormControl(this.item.description, Validators.required)
+      description: new FormControl(this.item.description, Validators.required),
+      category: new FormControl(this.item.category, Validators.required),
+      price: new FormControl(this.item.price,Validators.required)
+
     });
   }
 
   onSubmit(value){
+  
+
     let data = {
       title: value.title,
       description: value.description,
-      image: this.image
+      image: this.image,
+      category:value.category,
+      price: value.price,
+      publishedDate: value.formatteDate// meti yo esto
     }
     this.firebaseService.updateTask(this.item.id,data)
     .then(

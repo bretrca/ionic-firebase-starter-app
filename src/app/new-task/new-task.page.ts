@@ -5,6 +5,7 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
+import{formatDate} from '@angular/common';// ultimo añadido
 
 
 @Component({
@@ -13,7 +14,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
   styleUrls: ['./new-task.page.scss'],
 })
 export class NewTaskPage implements OnInit {
-
+  error:string;//cosas default
   validations_form: FormGroup;
   image: any;
 
@@ -35,15 +36,30 @@ export class NewTaskPage implements OnInit {
     this.image = "./assets/imgs/default_image.jpg";
     this.validations_form = this.formBuilder.group({
       title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required)
+      description: new FormControl('', Validators.required),
+      category: new FormControl('',Validators.required),// lo meti yo
+      price: new FormControl('',Validators.required)// meti yo esto
     });
   }
-
+ imgError(){
+    const error ="./assets/imgs/default_image.jpg";
+    }
+  
   onSubmit(value){
+    const image = `./assets/imgs/${value.title}.jpg`;
+   
+    const date = Date.now();
+    const format ='short' ;
+    const locale = 'en-US';
+    const formatteDate = formatDate(date, format, locale);
+
     let data = {
       title: value.title,
       description: value.description,
-      image: this.image
+      image: image,
+      category:value.category,
+      price: value.price,
+      publishedDate: formatteDate// meti yo esto
     }
     this.firebaseService.createTask(data)
     .then(
