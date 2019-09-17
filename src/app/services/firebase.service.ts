@@ -50,7 +50,7 @@ export class FirebaseService {
   updateTask(taskKey, value){
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
-      this.afs.collection('people').doc(currentUser.uid).collection('tasks').doc(taskKey).set(value)
+      this.afs.collection('people').doc(currentUser.uid).collection('tasks').doc(taskKey).update(value)
       .then(
         res => resolve(res),
         err => reject(err)
@@ -78,7 +78,8 @@ export class FirebaseService {
         image: value.image,
         category: value.category,
         publishedDate: value.publishedDate,
-        price:value.price
+        price:value.price,
+        satate: value.state
       })
       .then(
         res => resolve(res),

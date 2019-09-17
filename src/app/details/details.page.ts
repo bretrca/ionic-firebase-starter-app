@@ -18,9 +18,9 @@ export class DetailsPage implements OnInit {
   image: any;
   item: any;
   load: boolean = false;
-  category: string;
+ /*  category: string;
   publishedDate: Date;
-  price:number;
+  price:number; */
 
   constructor(
     private imagePicker: ImagePicker,
@@ -46,9 +46,9 @@ export class DetailsPage implements OnInit {
      if (data) {
        this.item = data;
        this.image = this.item.image;
-       this.category= this.item.category;
+       /* this.category= this.item.category;
        this.publishedDate= this.item.publishedDate;
-       this.price = this.item.price;
+       this.price = this.item.price; */
   
      }
     })
@@ -62,15 +62,15 @@ export class DetailsPage implements OnInit {
   }
 
   onSubmit(value){
-  
+    let image = `./assets/imgs/${value.title}.jpg`;
 
     let data = {
       title: value.title,
       description: value.description,
-      image: this.image,
+      image:image,
       category:value.category,
       price: value.price,
-      publishedDate: value.formatteDate// meti yo esto
+      status: 'modified'
     }
     this.firebaseService.updateTask(this.item.id,data)
     .then(

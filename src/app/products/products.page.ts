@@ -12,7 +12,8 @@ import{Product} from '../models/products';
 export class ProductsPage implements OnInit {
 
   products: Product[];
-
+  searchTerm:string;
+  filteredItems:Product[];
   constructor(
     public loadingCtrl: LoadingController,
     private authService: AuthService,
@@ -51,6 +52,20 @@ export class ProductsPage implements OnInit {
     }, err => {
       console.log(err);
     })
+  }
+
+  setFilteredItems(){
+    //console.log('buscandin '+this.searchTerm);
+   console.log(this.searchTerm)
+   console.log(this.products)
+  /*  filter(
+     product=>{
+       if(product.includes(searchTerm)){
+
+       }
+     } 
+     ) */
+
   }
 
 }
